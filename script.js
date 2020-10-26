@@ -36,7 +36,7 @@ function playerPlay(nbPlayer) {
     }
     puissance4[ligneVide][colonne-1] = nbPlayer;
     displayTab(puissance4, charJ1, charJ2);
-    return VerifWin();
+    return VerifWin(nbPlayer);
 }
 
 /**
@@ -70,8 +70,8 @@ function verifCase(row, col) {
 /**
  * Return while the game is not finish
  */
-function VerifWin() {
-    if (verifRow(joueur) || verifCol() || verifDiag())
+function VerifWin(joueur) {
+    if (verifRow(joueur) || verifCol(joueur) || verifDiag(joueur))
         return true;
     return false;
 }
@@ -80,15 +80,23 @@ function verifRow(joueur) {
     for (let i = nbRow-1; i >= 0; i--) {
         for (let j = 0; j < nbCol -3; j++) {
             if (
-                puissance4[i][j] === 0 &&
-                puissance4[i][j+1] === 0 &&
-                puissance4[i][j+2] === 0 &&
-                puissance4[i][j+3] === 0
-                ) {
+                puissance4[i][j] === joueur &&
+                puissance4[i][j+1] === joueur &&
+                puissance4[i][j+2] === joueur &&
+                puissance4[i][j+3] === joueur
+                )
                 return true;
-            }
         }
     }
+    return false;
+}
+
+function verifCol(joueur) {
+
+}
+
+function verifDiag(joueur) {
+
 }
 
 /**
