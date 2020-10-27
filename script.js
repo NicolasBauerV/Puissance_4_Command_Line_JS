@@ -76,6 +76,10 @@ function VerifWin(joueur) {
     return false;
 }
 
+/**
+ * Return true when the player complete a line
+ * @param {Number} joueur 
+ */
 function verifRow(joueur) {
     for (let i = nbRow-1; i >= 0; i--) {
         for (let j = 0; j < nbCol -3; j++) {
@@ -91,12 +95,51 @@ function verifRow(joueur) {
     return false;
 }
 
+/**
+ * Return true when the player complete a column
+ * @param {Number} joueur 
+ */
 function verifCol(joueur) {
-
+    for (let i = 0; i < nbCol; i++) {
+        for (let j = nbRow-4; j >= 0; j--) {
+            if (
+                puissance4[j][i] === joueur &&
+                puissance4[j+1][i] === joueur &&
+                puissance4[j+2][i] === joueur &&
+                puissance4[j+3][i] === joueur
+                )
+                return true;
+        }
+    }
+    return false;
 }
 
+/**
+ * Return when the player complete a diagonal left or right
+ * @param {Number} joueur 
+ */
 function verifDiag(joueur) {
-
+    for (let i = nbRow-1; i >= 3; i--) {
+        for (let j = 0; j < nbCol; j++) {
+            //Diagonal right
+            if (
+                puissance4[i][j] === joueur &&
+                puissance4[i-1][j+1] === joueur &&
+                puissance4[i-2][j+2] === joueur &&
+                puissance4[i-3][j+3] === joueur
+                )
+                return true;
+            //Diagonal left
+            if (
+                puissance4[i][j] === joueur &&
+                puissance4[i-1][j-1] === joueur &&
+                puissance4[i-2][j-2] === joueur &&
+                puissance4[i-3][j-3] === joueur
+                )
+                return true;
+        }
+    }
+    return false;
 }
 
 /**
